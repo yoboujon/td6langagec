@@ -4,16 +4,12 @@
 #define SIZELINE 2
 
 int print2Dtab(int ** matrix, int sizeCol, int sizeLine);
+int Saisie2(int ** matrix, int colNumber, int sizeLine);
 
 int main(void)
 {
-    int * col1 = (int *)(malloc(SIZECOL*sizeof(int)));
-    int * col2 = (int *)(malloc(SIZECOL*sizeof(int)));
     int ** line = (int **)(malloc(SIZELINE*sizeof(int *)));
-    line[0]=col1;
-    line[1]=col2;
-    col1[0] = 1;col1[1]=5;col1[2]=6;
-    col2[0] = 7;col2[1]=3;col2[2]=8;
+    Saisie2(line,SIZECOL,SIZELINE);
     print2Dtab(line,SIZECOL,SIZELINE);
     return 0;
 }
@@ -27,6 +23,21 @@ int print2Dtab(int ** matrix, int sizeCol, int sizeLine)
             printf("%d\t",matrix[i][j]);
         }
         printf("\n");
+    }
+    return 0;
+}
+
+int Saisie2(int ** matrix, int sizeCol, int sizeLine)
+{
+    for(int i=0; i<sizeLine ; i++)
+    {
+        int * col = (int *)(malloc(SIZECOL*sizeof(int)));
+        for(int j=0; j<sizeCol ; j++)
+        {
+            printf("matrix[%d][%d] = ",i,j);
+            scanf("%d",&col[j]);
+        }
+        matrix[i] = col;
     }
     return 0;
 }
